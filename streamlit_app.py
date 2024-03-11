@@ -4,8 +4,8 @@ import requests
 from io import BytesIO
 
 # Set the API endpoint URL
-API_ENDPOINT = "https://wheres-waldo.streamlit.app/"
-# API_ENDPOINT = "http://localhost:8000/detect_waldo"
+# API_ENDPOINT = "https://wheres-waldo.streamlit.app/"
+API_ENDPOINT = "http://localhost:8000/detect_waldo"
 
 # Set up the title and intro of the app on the main page
 st.title('Find Waldo with AI!')
@@ -22,7 +22,7 @@ if page == "Home":
     st.write("This is your starting point. Use the navigation in the sidebar to learn more or to start using the app.")
 
     # Waldo image URL
-    waldo_image_url = "https://github.com/fabianbacher/wheres-waldo/raw/main/Waldo%20Selfie.jpg"
+    waldo_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/images/Waldo%20Selfie.jpg"
 
     # Download the image from the web
     response = requests.get(waldo_image_url)
@@ -39,7 +39,7 @@ elif page == "How it works":
     """)
 
     # The correct raw GitHub URL to the CNN model image
-    cnn_model_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/CNN%20Model.png"
+    cnn_model_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/models/CNN%20Model.png"
 
     # Download the image from the web
     response = requests.get(cnn_model_image_url)
@@ -92,7 +92,7 @@ elif page == "About":
     """)
 
     # Raw GitHub URL to the team's image
-    team_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/Team%20Waldo.JPG"
+    team_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/images/Team%20Waldo.JPG"
 
     # Download the image from the web
     response = requests.get(team_image_url)
