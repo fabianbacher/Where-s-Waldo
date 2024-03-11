@@ -4,7 +4,8 @@ import requests
 from io import BytesIO
 
 # Set the API endpoint URL
-API_ENDPOINT = "http://localhost:8000/detect_waldo"
+API_ENDPOINT = "https://wheres-waldo.streamlit.app/"
+# API_ENDPOINT = "http://localhost:8000/detect_waldo"
 
 # Set up the title and intro of the app on the main page
 st.title('Find Waldo with AI!')
@@ -33,9 +34,19 @@ if page == "Home":
 elif page == "How it works":
     st.header("How it Works")
     st.write("""
-    This app uses advanced deep learning algorithms to identify and locate Waldo in any image.
-    Simply upload your image, and the AI will highlight Waldo for you.
+        This app uses advanced deep learning algorithms to identify and locate Waldo in any image.
+        Simply upload your image, and the AI will highlight Waldo for you.
     """)
+
+    # The correct raw GitHub URL to the CNN model image
+    cnn_model_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/CNN%20Model.png"
+
+    # Download the image from the web
+    response = requests.get(cnn_model_image_url)
+    cnn_model_image = Image.open(BytesIO(response.content))
+
+    # Display the CNN model image on the 'How it works' page, fitting the size of the blue box placeholder
+    st.image(cnn_model_image, use_column_width=True)
 
 elif page == "Try it out":
     st.header("Try It Out")

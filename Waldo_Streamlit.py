@@ -1,8 +1,11 @@
-
 import streamlit as st
 from PIL import Image
 import requests
 from io import BytesIO
+
+# Set the API endpoint URL
+API_ENDPOINT = "https://wheres-waldo.streamlit.app/"
+# API_ENDPOINT = "http://localhost:8000/detect_waldo"
 
 # Set up the title and intro of the app on the main page
 st.title('Find Waldo with AI!')
@@ -17,11 +20,14 @@ with st.sidebar:
 if page == "Home":
     st.header("Home")
     st.write("This is your starting point. Use the navigation in the sidebar to learn more or to start using the app.")
+
     # Waldo image URL
     waldo_image_url = "https://github.com/fabianbacher/wheres-waldo/raw/main/Waldo%20Selfie.jpg"
+
     # Download the image from the web
     response = requests.get(waldo_image_url)
     waldo_image = Image.open(BytesIO(response.content))
+
     # Display the Waldo image on the home page
     st.image(waldo_image, caption='Waldo is Here!', use_column_width=True)
 
@@ -31,6 +37,16 @@ elif page == "How it works":
         This app uses advanced deep learning algorithms to identify and locate Waldo in any image.
         Simply upload your image, and the AI will highlight Waldo for you.
     """)
+
+    # The correct raw GitHub URL to the CNN model image
+    cnn_model_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/CNN%20Model.png"
+
+    # Download the image from the web
+    response = requests.get(cnn_model_image_url)
+    cnn_model_image = Image.open(BytesIO(response.content))
+
+    # Display the CNN model image on the 'How it works' page, fitting the size of the blue box placeholder
+    st.image(cnn_model_image, use_column_width=True)
 
 elif page == "Try it out":
     st.header("Try It Out")
@@ -42,32 +58,40 @@ elif page == "Try it out":
             image = Image.open(uploaded_image)
             st.image(image, caption="Uploaded Image", use_column_width=True)
 
-            # Your image processing code
-            # Replace with actual processing code
+            # Send the image to the API
+            files = {"file": uploaded_image.getvalue()}
+            response = requests.post(API_ENDPOINT, files=files)
 
-            # Mockup: Replace this with condition checking if Waldo was found
-            waldo_found = True  # replace with actual detection result
-            if waldo_found:
-                # Mockup: Replace with the actual result image after processing
-                result_image = image  # replace with actual result image
-                result_image_available = True  # replace with actual check
+            if response.status_code == 200:
+                data = response.json()
+                message = data["message"]
+                st.write(message)
 
-                st.image(result_image, caption="Waldo Found!", use_column_width=True)
-                st.success('Done!')
+                if "output_image" in data:
+                    output_image_path = data["output_image"]
 
-                # Allow users to download the result image
-                st.download_button('Download Result', data=BytesIO(result_image.tobytes()), file_name='waldo_found.png')
+                    # Read the output image
+                    with open(output_image_path, "rb") as f:
+                        image_bytes = f.read()
+
+                    # Display the output image
+                    st.image(image_bytes, caption="Image with Waldo detected", use_column_width=True)
+
+                    # Allow users to download the result image
+                    st.download_button('Download Result', data=BytesIO(image_bytes), file_name='waldo_found.png')
+
             else:
-                st.error("Waldo could not be found in this image.")
+                st.error(f"Error: {response.status_code}")
 
 elif page == "About":
     st.header("About")
     st.write("""
-        Developed with meticulous dedication by Team Waldo at Le Wagon Amsterdam, this app is the collective brainchild of Fabian Bacher, Albert Paul, Victor van Leeuwen, and Megan Ho.
-        It embodies a cutting-edge fusion of deep learning and machine learning technologies, harnessing the advanced functionalities of TensorFlow's Keras coupled with the analytical prowess of Convolutional Neural Networks (CNN).
-        Together, they form the dynamic core that drives this app's powerful image recognition models.
+    Developed with meticulous dedication by Team Waldo at Le Wagon Amsterdam, this app is the collective brainchild of Fabian Bacher, Albert Paul, Victor van Leeuwen, and Megan Ho.
+    It embodies a cutting-edge fusion of deep learning and machine learning technologies, harnessing the advanced functionalities of TensorFlow's Keras coupled with the analytical prowess of Convolutional Neural Networks (CNN).
+    Together, they form the dynamic core that drives this app's powerful image recognition models.
     """)
- # Raw GitHub URL to the team's image
+
+    # Raw GitHub URL to the team's image
     team_image_url = "https://raw.githubusercontent.com/fabianbacher/wheres-waldo/main/Team%20Waldo.JPG"
 
     # Download the image from the web
@@ -76,4 +100,3 @@ elif page == "About":
 
     # Display the team image, using the full width of the column
     st.image(team_image, caption='Team Waldo', use_column_width=True)
-# Note: Ensure that the logic and variables like `result_image_available` and `result_image` are properly defined in your actual code
