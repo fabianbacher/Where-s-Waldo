@@ -10,7 +10,7 @@ from find_waldo import load_image_into_numpy_array, draw_box
 app = FastAPI()
 
 # Load the TensorFlow model
-model_path = './frozen_inference_graph.pb'
+model_path = './model.pb'
 detection_graph = tf.Graph()
 with detection_graph.as_default():
     od_graph_def = tf.compat.v1.GraphDef()
