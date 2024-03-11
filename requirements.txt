@@ -1,0 +1,11 @@
+
+fastapi
+uvicorn
+PIL
+numpy
+tensorflow
+streamlit
+requests
+io
+matplotlib
+matplotlib.patches
