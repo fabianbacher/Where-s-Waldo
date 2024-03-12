@@ -30,9 +30,10 @@ The project starts with leveraging the **Hey-Waldo repository**, containing over
 Embark on your own **Where's Waldo?** journey by following these steps:
 
 1. Clone the repository:
-git clone https://github.com/fabianbacher/wheres-waldo.git
+    #### git clone https://github.com/fabianbacher/wheres-waldo.git
+    #### git clone https://github.com/fabianbacher/wheres-waldo-frontend
 2. Install required dependencies:
-pip install -r requirements.txt
+    #### pip install -r requirements.txt
 
 3. Review the documentation for detailed setup instructions and dataset preparation.
 
