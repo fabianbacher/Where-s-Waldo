@@ -5,6 +5,8 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import io
+import cv2
+import base64
 
 # Import your existing functions
 from models.find_waldo import load_image_into_numpy_array, draw_box
@@ -58,19 +60,19 @@ async def detect_waldo(file: UploadFile = File(...)):
 
             # Draw the bounding box
             fig, ax = draw_box(boxes[0][0], image_np)
+            #print(fig)
+            #print(type(fig))
             ax.imshow(image_np)
 
-            # Save the image with the bounding box - local solution
+            # Save the image with the bounding box
             output_path = "output.png"
             fig.savefig(output_path)
 
-            # Turn the image into bytes for the API response
-            img_bytes = io.BytesIO(fig)
-            #fig.save(img_bytes, format='PNG')
-            #img_bytes = img_bytes.getvalue()
-            print(img_bytes)
+            with open(output_path, "rb") as f:
+                image_bytes = f.read()
 
-            return {"message": "Waldo found", "output_image": img_bytes}
+            base64_image = base64.b64encode(image_bytes).decode('utf-8')
+            return {"message": "Waldo found", "output_image": base64_image}
 
 @app.get("/") ## To test the API
 def root():
