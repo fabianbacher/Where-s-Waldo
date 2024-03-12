@@ -1,11 +1,12 @@
-
-fastapi
-uvicorn
-PIL
+pillow
 numpy
 tensorflow
 streamlit
 requests
-io
 matplotlib
-matplotlib.patches
+# API
+fastapi         # API framework
+uvicorn         # web server
+# tests
+httpx           # HTTP client
+pytest-asyncio  # asynchronous I/O support for pytest
