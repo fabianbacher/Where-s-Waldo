@@ -1,6 +1,7 @@
 # Project specific files
 raw_data/
 .env
+.env.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
