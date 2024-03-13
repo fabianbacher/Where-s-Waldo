@@ -10,7 +10,7 @@ Watch our project in action and see the precision of our Waldo detection model:
 
 Additionally, experience our project firsthand through the interactive user interface:
 
-- **User Interface API**: [https://wheres-waldo.streamlit.app/](https://wheres-waldo.streamlit.app/)
+- **User Interface App**: [https://wheres-waldo.streamlit.app/](https://wheres-waldo.streamlit.app/)
 
 ## Project Overview
 
