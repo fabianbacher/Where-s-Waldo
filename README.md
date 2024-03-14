@@ -47,10 +47,10 @@ We welcome contributions! For improvements or bug fixes, please fork the reposit
 
 ## Links & References
 
-- [How to Find Wally with a Neural Network](#)
-- [How To Label Where’s Wally/Waldo images using OpenCV and Deep Learning (YOLO v2)](#)
-- [Where’s Waldo: Terminator Edition](#)
-- [Here's Waldo: Computing the optimal search strategy for finding Waldo](#)
+- [How to Find Wally with a Neural Network](https://towardsdatascience.com/how-to-find-wally-neural-network-eddbb20b0b90)
+- [How To Label Where’s Wally/Waldo images using OpenCV and Deep Learning (YOLO v2)](https://fortes-arthur.medium.com/how-to-label-wheres-wally-waldo-images-using-opencv-and-deep-learning-yolo-v2-abba7150999f)
+- [Where’s Waldo: Terminator Edition](https://hackernoon.com/wheres-waldo-terminator-edition-8b3bd0805741)
+- [Here's Waldo: Computing the optimal search strategy for finding Waldo](https://randalolson.com/2015/02/03/heres-waldo-computing-the-optimal-search-strategy-for-finding-waldo/)
 
 ## Acknowledgments
 
