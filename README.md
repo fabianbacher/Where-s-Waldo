@@ -1,6 +1,6 @@
 # Where's Waldo? 🔍
 
-**Where's Waldo?** is a cutting-edge deep learning project aimed at simplifying the search for Waldo in the widely beloved children's book series. By leveraging Convolutional Neural Networks (CNNs) and YOLO (You Only Label Once), our model achieves efficient and precise detection of Waldo's location in various scenes.
+**Where's Waldo?** is a cutting-edge deep learning project aimed at simplifying the search for Waldo in the widely beloved children's book series. By leveraging Convolutional Neural Networks (CNNs) and YOLO (You Only Look Once), our model achieves efficient and precise detection of Waldo's location in various scenes.
 
 ## Demo Video
 
